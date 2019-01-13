@@ -1,0 +1,45 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
+class FriendsContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "tabarnak",
+      friends: ["calisse", "marde"]
+    }
+
+    this.addFriend = this.addFriend.bind(this);
+  }
+
+  addFriend(friend) {
+    this.setState((state) => ({
+      friends: state.friends.concat([friend])
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <h3> Name : {this.state.name}</h3>
+        <FriendsList names={this.state.friends} />
+      </div>
+    )
+  }
+}
+
+class FriendsList extends React.Component {
+  render() {
+    return (
+      <div>
+        <h3>Friends</h3>
+        <ul>
+          {this.props.names.map((friend) => <li>{friend}</li>)}
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default FriendsContainer;
